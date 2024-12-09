@@ -1,0 +1,76 @@
+import os # accesing the os function
+import check_camera
+import Capture_Image
+import Train_Image
+import Recognize
+#creating the title bar function
+def title_bar():
+    os.system('cls')# for windows
+    #title of the program
+print("\t***************************************")
+print("\t**********Face Recognition Attendence System using jetson nano******")
+print("\t****************************************")
+#creating the user main menu function
+def mainMenu():
+    title_bar()
+    print()
+    print(10 *"*","Welcome Menu",10*"*")
+    print("[1] Check Camera")
+    print("[2] Capture Faces")
+    print("[3] Train Images")
+    print("[4] Recognize Attendence")
+    print("[5] Auto Mail")
+    print("[6] Quit")
+    while True:
+        try:
+            choice=int(input("Enter Choice:"))
+            if choice==1:
+                checkCamera()
+                break
+            elif choice==2:
+                CaptureFaces()
+                break
+            elif choice==3:
+                Trainimages()
+                break
+            elif choice==4:
+                RecognizeFaces()
+                break
+            elif choice==5:
+                os.system("py automail.py")
+                break
+                mainMenu()
+            elif choice==6:
+                print("Thank You")
+                break
+            else:
+                print("Invalid Choice.Enter 1-6")
+                mainMenu()
+        except ValueError:
+            print("Inavlid Choicer.Enter 1-6\n Try Again")
+#-------------------------------------------------------------
+#calling the camera test function,from check camera.py file
+def checkCamera():
+    check_camera.camer()
+    key=input("Press Enter to return main menu")
+    mainMenu()
+#---------------------------------------------------------------
+#calling the take image function form capture image.py file
+def CaptureFaces():
+    Capture_Image.takeImage()
+    key=input("Press Enter to return main menu")
+    mainMenu()
+#----------------------------------------------------------------
+#calling the train images from train_images.py file
+def Trainimages():
+    Train_Image.TrainImages()
+    key=input("Press Enter to return main menu")
+    mainMenu()
+#-----------------------------------------------------------------
+#calling the recognize_attendence from recognize.py file
+def RecognizeFaces():
+    Recognize.recognize_attendence()
+    key=input("Press Enter to return main menu")
+    mainMenu()
+#-------------------main Driver--------------------
+mainMenu( )
